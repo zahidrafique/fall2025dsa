@@ -53,7 +53,7 @@ public class BinarySearch {
         int upperBound = sortedArray.length - 1;
         int midPoint;
         
-        while(upperBound > lowerBound) {
+        while(upperBound >= lowerBound) {
             midPoint = (lowerBound + upperBound) / 2;
             
             if (searchKey < sortedArray[midPoint]) {
@@ -84,3 +84,4 @@ public class BinarySearch {
         }
    }
 }
+
