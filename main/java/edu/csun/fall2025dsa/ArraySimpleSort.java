@@ -14,8 +14,27 @@ public class ArraySimpleSort {
         
         print(mData);        
         //bubbleSort(mData);
-        selectionSort(mData);
+        //selectionSort(mData);
+        insertionSort(mData);
+        
         print(mData);
+    }
+    
+    public static void insertionSort(int[] data) {
+        int temp;
+        
+        for (int i = 1; i < data.length; i++) {
+            temp = data[i];
+            
+            int j = i;
+            
+            while(j > 0 && data[j-1] > temp) {
+                data[j] = data[j - 1];
+                j--;
+            }
+            
+            data[j] = temp;
+        }
     }
     
     public static void selectionSort(int[] data) {
