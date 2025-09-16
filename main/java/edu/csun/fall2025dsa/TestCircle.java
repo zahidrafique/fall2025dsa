@@ -22,5 +22,13 @@ public class TestCircle {
         Circle cx = cl1;
         System.out.println("CX Area: " + cx.getArea());
         
+        Circle c3 = new Circle(5, "Gold");
+        
+        if (c3.compareTo(c2) > 0) {
+            System.out.println("Circle c3 is bigger than c2!");
+        } else {
+            System.out.println("Circle c3 is not bigger than c2!");
+        }
+        
     }
 }

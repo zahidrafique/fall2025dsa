@@ -4,8 +4,12 @@ package edu.csun.fall2025dsa;
  *
  * @author zrafique
  */
-public class Circle extends Object {
-
+public class Circle implements Comparable<Circle> {
+    @Override
+    public int compareTo(Circle c) {
+        return (int)(this.radius - c.radius);
+    }
+    
     /**
      * @return the radius
      */
