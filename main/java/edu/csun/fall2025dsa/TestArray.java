@@ -25,7 +25,7 @@ public class TestArray {
         } 
     }
     
-    private static int linearSearch(int[] data, int searchKey) {
+    static int linearSearch(int[] data, int searchKey) {
         int i = 0 ;
         
         for( ; i < data.length; i++) {
