@@ -54,7 +54,7 @@ public class Queue {
         long temp = data[front];
         
         if (front == data.length - 1) {
-            front = 0;
+            front = -1;
         }
         
         front++;
@@ -87,3 +87,4 @@ public class Queue {
         return "front: " + front + ", back: " + back + ", " + Arrays.toString(data);  
     }
 }
+
