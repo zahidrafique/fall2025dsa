@@ -17,6 +17,12 @@ public class TestBST {
             bst.insert(36, 6754);
             bst.insert(42, 87654);
             bst.insert(78, 87654);
+            bst.insert(20, 78652);
+            bst.insert(60, 78652);
+            bst.insert(87, 78652);
+            
+            bst.print();
+            
             
             int searchId = 780;
             BSTNode found = bst.min();

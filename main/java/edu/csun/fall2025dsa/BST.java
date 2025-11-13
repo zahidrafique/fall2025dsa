@@ -77,4 +77,48 @@ public class BST {
               
         return minNode;
     }
+    
+    private String traversePreOrder(BSTNode root) {
+        if (root == null)
+            return "";
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append(root.getId());
+        
+        String pointerRight = "---";
+        String pointerLeft = "|--";
+        
+        traverseNodes(sb, "", pointerLeft, root.getLeftChild(), root.getRightChild() != null);
+        traverseNodes(sb, "", pointerRight, root.getRightChild(), false);
+        
+        return sb.toString();
+    }
+    
+    private void traverseNodes(StringBuilder sb, String padding, String pointer, 
+            BSTNode node, boolean hasRightSibling) {
+    
+        if (node == null)
+            return;
+        
+        sb.append("\n");
+        sb.append(padding);
+        sb.append(pointer);
+        sb.append(node.getId());
+        
+        StringBuilder pb = new StringBuilder(padding);
+        if (hasRightSibling) 
+            pb.append("|  ");
+        else
+            pb.append("   ");
+        
+        String p = pb.toString();
+        String pntr = "|--";
+        traverseNodes(sb, p, pntr, node.getLeftChild(), node.getRightChild() != null);
+        traverseNodes(sb, p, pntr, node.getRightChild(), false);
+    }
+    
+    public void print() {
+        String s = traversePreOrder(root);
+        System.out.println(s);
+    }
 }
