@@ -23,7 +23,28 @@ public class TestBST {
             
             bst.print();
             
+            bst.delete(87);
+            bst.print();
             
+            bst.delete(20);
+            bst.print();
+            
+            bst.delete(36);
+            bst.print();
+            
+            bst.delete(78);
+            bst.print();
+            
+            bst.delete(48);
+            bst.print();
+            
+            bst.delete(60);
+            bst.print();
+            
+            bst.delete(42);
+            bst.print();
+            
+            /*
             int searchId = 780;
             BSTNode found = bst.min();
             
@@ -32,7 +53,7 @@ public class TestBST {
             } else {
                 System.out.println("Found node: " + found);
             }
-        
+            */
         } catch (Exception e) {
             
         }

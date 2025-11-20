@@ -117,8 +117,94 @@ public class BST {
         traverseNodes(sb, p, pntr, node.getRightChild(), false);
     }
     
+    public void delete(int id) {
+        BSTNode delNode = find(id);
+        
+        if (delNode == null) {      //There is nothing to delete
+            return;
+        }
+        
+        if (delNode.isLeafNode()) {     //delNode is a leaf node
+            if (delNode == root) {
+                root = null;
+            } else {
+                if (delNode.isLeftChild()) {
+                    delNode.getParent().setLeftChild(null);
+                } else {
+                    delNode.getParent().setRightChild(null);
+                }
+            }
+        } else if (delNode.getLeftChild() == null) {    //Only right child exists
+            if (delNode == root) {
+                root = delNode.getRightChild();
+            } else {
+                if (delNode.isLeftChild()) {
+                    delNode.getParent().setLeftChild(delNode.getRightChild());
+                } else {
+                    delNode.getParent().setRightChild(delNode.getRightChild());
+                }
+            }
+            
+            delNode.getRightChild().setParent(delNode.getParent());
+        } else if (delNode.getRightChild() == null) {   //Only left child exists
+            if (delNode == root) {
+                root = delNode.getLeftChild();
+            } else {
+                if (delNode.isLeftChild()) {
+                    delNode.getParent().setLeftChild(delNode.getLeftChild());
+                } else {
+                    delNode.getParent().setRightChild(delNode.getLeftChild());
+                }
+            }
+            
+            delNode.getLeftChild().setParent(delNode.getParent());
+        } else {        //Both children exist
+            BSTNode successor = getSuccesssor(delNode);
+            
+            delNode.getLeftChild().setParent(successor);
+            successor.setLeftChild(delNode.getLeftChild());
+            
+            if (delNode == root) {
+                root = successor;
+            } else {
+                if (delNode.isLeftChild()) {
+                    delNode.getParent().setLeftChild(successor);
+                } else {
+                    delNode.getParent().setRightChild(successor);
+                }
+            }
+            
+            successor.setParent(delNode.getParent()); 
+        }        
+    }
+    
+    private BSTNode getSuccesssor(BSTNode delNode) {
+        BSTNode successor = delNode.getRightChild();
+        
+        if (successor.getLeftChild() != null) {
+            while (successor.getLeftChild() != null) {
+                successor = successor.getLeftChild();
+            }
+            
+            successor.getParent().setLeftChild(successor.getRightChild());
+            successor.getRightChild().setParent(successor.getParent());  
+
+            delNode.getRightChild().setParent(successor);
+            successor.setRightChild(delNode.getRightChild());
+        }
+        
+        return successor;
+    }
+    
     public void print() {
         String s = traversePreOrder(root);
-        System.out.println(s);
+        
+        if (s == null || s.isEmpty()) {
+            System.out.println("Tree is empty!");
+        } else {
+            System.out.println(s);
+        }
+        
+        System.out.println();
     }
 }
